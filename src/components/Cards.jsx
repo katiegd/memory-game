@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import "../Cards.css";
 
-export default function FetchPokemon() {
+export default function FetchPokemon({ finalGameList, setFinalGameList }) {
   const [pokemonList, setPokemonList] = useState([]);
   const [initialGameList, setInitialGameList] = useState([]);
-  const [finalGameList, setFinalGameList] = useState([]);
+  const [clickCount, setClickCount] = useState(false);
+  const [clickedList, setClickedList] = useState([]);
 
   // Game will start with 3 cards (max of 10 Pokemon) then will do medium (4/15) and hard (5/20) difficulties
 
@@ -57,16 +59,55 @@ export default function FetchPokemon() {
     return pokeArr;
   }
 
-  console.log(finalGameList);
+  function shuffleArray(array) {
+    let currentIndex = array.length;
 
-  return finalGameList.map((pokemon) => (
-    <p key={pokemon.name}>
-      {pokemon.name}
-      <img
-        id={pokemon.id}
-        key={pokemon.id}
-        src={pokemon.sprites.front_default}
-      />
-    </p>
-  ));
+    while (currentIndex != 0) {
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+  }
+
+  function handleCards(e) {
+    const pokeName = e.target.id;
+    setClickCount(true);
+
+    if (clickedList.includes(pokeName)) {
+      alert("YOU LOSE!");
+    } else {
+      setClickedList((prevClickedList) => [...prevClickedList, pokeName]);
+    }
+
+    console.log(clickedList);
+    shuffleArray(finalGameList);
+  }
+
+  return (
+    <div className="cards-container">
+      {finalGameList.length > 0
+        ? finalGameList.slice(0, 3).map((pokemon) => (
+            <div
+              className="poke-card"
+              id={pokemon.name}
+              key={pokemon.name}
+              onClick={(e) => handleCards(e)}
+            >
+              <p>{pokemon.name} </p>
+              <img
+                id={pokemon.name}
+                key={pokemon.id}
+                src={pokemon.sprites.front_default}
+                width="150px"
+                height="150px"
+              />
+            </div>
+          ))
+        : "Loading Pokemon..."}
+    </div>
+  );
 }

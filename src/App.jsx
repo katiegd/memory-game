@@ -1,12 +1,16 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState } from "react";
 import "./App.css";
-import FetchPokemon from "./components/FetchPokemon";
+import Cards from "./components/Cards";
 
 function App() {
+  const [finalGameList, setFinalGameList] = useState([]);
+
   return (
     <>
-      <FetchPokemon />
+      <Cards
+        finalGameList={finalGameList}
+        setFinalGameList={setFinalGameList}
+      />
     </>
   );
 }
