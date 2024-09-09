@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function FetchPokemon({ setFinalGameList }) {
+export default function FetchPokemon({ setFinalGameList, restartGame }) {
   const [pokemonList, setPokemonList] = useState([]);
 
   // Game will start with 3 cards (max of 10 Pokemon) then will do medium (4/15) and hard (5/20) difficulties
@@ -17,7 +17,7 @@ export default function FetchPokemon({ setFinalGameList }) {
       .catch((error) => {
         console.error("Error fetching Pokemon:", error);
       });
-  }, []);
+  }, [restartGame]);
 
   function randomizePokemon() {
     //Chooses 10 random pokemon to add to initialGameList

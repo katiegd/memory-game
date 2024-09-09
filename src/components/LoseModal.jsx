@@ -1,15 +1,12 @@
 import "../LoseModal.css";
 import snorlax from "../assets/avatar.png";
 
-export default function LoseModal({ setIsGameOver }) {
-  function restartGame() {
-    setIsGameOver(false);
-  }
+export default function LoseModal({ handleRestart }) {
   return (
     <>
       <div className="lose-modal">
         <div className="lose-modal-content">
-          <span className="close" onClick={() => restartGame()}>
+          <span className="close" onClick={handleRestart}>
             &times;
           </span>
           <p className="lose-modal-header">
@@ -19,7 +16,7 @@ export default function LoseModal({ setIsGameOver }) {
           </p>
           <p>You clicked on the same Pokemon twice.</p>
           <div className="button-wrapper">
-            <button className="lose-try-again" onClick={() => restartGame()}>
+            <button className="lose-try-again" onClick={handleRestart}>
               Try Again?
             </button>
             <button

@@ -1,0 +1,85 @@
+.win-modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Content/Box */
+.win-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fffadb;
+  margin: 20% auto;
+  padding: 20px 0 50px 0;
+  border: 1px solid #888;
+  border-radius: 20px;
+  min-width: 400px;
+  width: 60%;
+}
+
+/* The Close Button */
+.close {
+  color: #6a6a6a;
+  position: relative;
+  top: -19px;
+  left: 47%;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.win-modal-header {
+  font-size: 2rem;
+}
+
+button {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+.win-try-again {
+  background: linear-gradient(#91e5bb, #2ede45);
+  padding: 1rem;
+  border: 3px solid #1785265d;
+  font-family: "Gameboy";
+  border-radius: 10px;
+}
+
+.win-change-difficulty {
+  background: linear-gradient(#ff9898, #ff4141);
+  padding: 1rem;
+  border: 3px solid #7316163b;
+  font-family: "Gameboy";
+  border-radius: 10px;
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.win-try-again:hover {
+  background: linear-gradient(#64e675, #91e5bb);
+}
+
+.win-change-difficulty:hover {
+  background: linear-gradient(#ff4141, #ff9898);
+}
+
+button:hover {
+  box-shadow: 1px 1px 5px #00000027;
+  cursor: pointer;
+}

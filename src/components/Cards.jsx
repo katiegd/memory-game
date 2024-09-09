@@ -3,12 +3,14 @@ import "../Cards.css";
 
 export default function Cards({
   finalGameList,
+  scores,
   setScores,
   setClickedList,
   clickedList,
   displayedPokemon,
   setDisplayedPokemon,
   setIsGameOver,
+  setIsGameWon,
 }) {
   useEffect(() => {
     if (finalGameList.length > 0) {
@@ -55,8 +57,11 @@ export default function Cards({
   function handleCards(e) {
     const pokeName = e.target.id;
 
+    if (scores.curr === finalGameList.length - 1) {
+      setIsGameWon(true);
+    }
+
     if (clickedList.includes(pokeName)) {
-      alert("YOU LOSE!"); //Replace with function later.
       setScores((prevScore) => ({
         ...prevScore,
         curr: 0,
