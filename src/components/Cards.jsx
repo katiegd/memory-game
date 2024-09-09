@@ -1,69 +1,44 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../Cards.css";
 
-export default function FetchPokemon({
+export default function Cards({
   finalGameList,
-  setFinalGameList,
   setScores,
+  setClickedList,
+  clickedList,
+  displayedPokemon,
+  setDisplayedPokemon,
+  setIsGameOver,
 }) {
-  const [pokemonList, setPokemonList] = useState([]);
-  const [initialGameList, setInitialGameList] = useState([]);
-  const [clickCount, setClickCount] = useState(0);
-  const [clickedList, setClickedList] = useState([]);
-
-  // Game will start with 3 cards (max of 10 Pokemon) then will do medium (4/15) and hard (5/20) difficulties
-
   useEffect(() => {
-    // Pulls the names of the original 151 Pokemon
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151")
-      .then((poke) => {
-        return poke.json();
-      })
-      .then((data) => {
-        setPokemonList(data.results);
-      })
-      .catch((error) => {
-        console.error("Error fetching Pokemon:", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (pokemonList.length > 0) {
-      const gameList = randomizePokemon();
-      setInitialGameList(gameList);
-      // Make sure the API data has loaded. Then set initial list of Pokemon.
-
-      const fetchPromises = initialGameList.map((poke) =>
-        fetch(poke.url).then((response) => response.json())
+    if (finalGameList.length > 0) {
+      // Filter unclicked Pokemon
+      const unclickedPokemon = finalGameList.filter(
+        (pokemon) => !clickedList.includes(pokemon.name)
       );
 
-      Promise.all(fetchPromises).then((data) => {
-        setFinalGameList(data);
-      });
-    }
-  }, [pokemonList]); // Effect depends on pokemonList loading
+      const numOfVisible = 3; // Need to make this based on the difficulty.
+      const visiblePokemon = new Set();
 
-  function randomizePokemon() {
-    //Chooses 10 random pokemon to add to initialGameList
-    const pokeArr = []; // New array of just 10 pokemon
-    if (pokemonList.length < 2) {
-      throw new Error("Not enough Pokemon.");
-    }
-    while (pokeArr.length < 10) {
-      const randomPokeIndex = Math.floor(Math.random() * pokemonList.length); // Generates a random index based on the length of the pokemonList
-      const randomPokemon = pokemonList[randomPokeIndex];
-
-      if (!pokeArr.some((poke) => poke.pokemon.name === randomPokemon.name)) {
-        pokeArr.push({
-          pokemon: randomPokemon,
-          url: randomPokemon.url,
-        });
+      if (unclickedPokemon.length > 0) {
+        // Ensure at least one unclicked Pokemon is visible
+        visiblePokemon.add(
+          unclickedPokemon[Math.floor(Math.random() * unclickedPokemon.length)] // Add index of random unclicked Pokemon
+        );
       }
+
+      // Fill rest of slots with clicked or unclicked Pokemon
+      while (visiblePokemon.size < numOfVisible) {
+        const randomPokemon =
+          finalGameList[Math.floor(Math.random() * finalGameList.length)];
+        visiblePokemon.add(randomPokemon);
+      }
+      setDisplayedPokemon([...visiblePokemon]);
     }
-    return pokeArr;
-  }
+  }, [finalGameList, clickedList]);
 
   function shuffleArray(array) {
+    //Fisher-Yates Sorting Algorithm
     let currentIndex = array.length;
 
     while (currentIndex != 0) {
@@ -81,36 +56,44 @@ export default function FetchPokemon({
     const pokeName = e.target.id;
 
     if (clickedList.includes(pokeName)) {
-      alert("YOU LOSE!");
-      setClickCount(0);
+      alert("YOU LOSE!"); //Replace with function later.
+      setScores((prevScore) => ({
+        ...prevScore,
+        curr: 0,
+      }));
+      setIsGameOver(true);
     } else {
-      setClickCount((prevCount) => prevCount + 1);
-      setScores(clickCount);
+      setScores((prevScore) => {
+        const newCurr = prevScore.curr + 1;
+        return {
+          ...prevScore,
+          curr: newCurr,
+          high: newCurr > prevScore.high ? newCurr : prevScore.high,
+        };
+      });
       setClickedList((prevClickedList) => [...prevClickedList, pokeName]);
     }
 
-    console.log(clickedList);
-    console.log(clickCount);
     shuffleArray(finalGameList);
   }
 
   return (
     <div className="cards-container">
-      {finalGameList.length > 0
-        ? finalGameList.slice(0, 3).map((pokemon) => (
+      {displayedPokemon.length > 0
+        ? displayedPokemon.map((pokemon) => (
             <div
               className="poke-card"
               id={pokemon.name}
               key={pokemon.name}
               onClick={(e) => handleCards(e)}
             >
-              <p>{pokemon.name} </p>
+              <p>{pokemon.name}</p>
               <img
                 id={pokemon.name}
                 key={pokemon.id}
                 src={pokemon.sprites.front_default}
-                width="150px"
-                height="150px"
+                width="200px"
+                height="200px"
               />
             </div>
           ))

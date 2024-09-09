@@ -1,14 +1,20 @@
-export default function Scoreboard({ scores }) {
+export default function Scoreboard({ scores, finalGameList }) {
   return (
     <>
-      <h2>
-        Score:
-        {/* {scores.curr} */}
-      </h2>
-      <h2>
-        High Score:
-        {/* {scores.high} */}
-      </h2>
+      <div className="scoreboard">
+        {" "}
+        <div className="current-score">
+          <h2>Score:</h2>
+          <p className="score">
+            {" "}
+            {scores.curr} / {finalGameList.length}
+          </p>
+        </div>
+        <div className="high-score">
+          <h2>High Score:</h2>
+          <p className="score"> {scores.high}</p>
+        </div>
+      </div>
     </>
   );
 }

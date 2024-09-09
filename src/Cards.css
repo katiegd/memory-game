@@ -1,16 +1,21 @@
 .cards-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 25px;
+  justify-content: center;
+  justify-items: center;
 }
 
 .poke-card {
   color: #000;
-
-  background-color: #ffe749;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  border: 6px solid #3b4cca;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #3b4cca8b;
+  box-shadow: 1px 1px 10px #0000002d;
   border-radius: 10%;
   transition: scale 150ms ease-out;
 }

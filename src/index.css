@@ -4,13 +4,11 @@
 }
 
 body {
-  background-image: url(./assets/4824751.jpg);
+  background-image: url(./assets/8614.jpg);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   font-family: "Gameboy", "Courier New", Courier, monospace;
@@ -18,4 +16,33 @@ body {
   letter-spacing: -1px;
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
     1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+.main-content {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  background-color: #8cc9e8f0;
+  box-shadow: 1px 1px 15px #00000033;
+  backdrop-filter: blur(4px);
+  min-width: 600px;
+  width: 70vw;
+  height: auto;
+  padding: 3vh 0vw;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 4rem;
+}
+
+.score {
+  font-size: 2rem;
+}
+
+.header {
+  font-size: 1.2rem;
 }
