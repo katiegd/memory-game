@@ -6,6 +6,7 @@
 
 .poke-card {
   color: #000;
+
   background-color: #ffe749;
   display: flex;
   flex-direction: column;

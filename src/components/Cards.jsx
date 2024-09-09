@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import "../Cards.css";
 
-export default function FetchPokemon({ finalGameList, setFinalGameList }) {
+export default function FetchPokemon({
+  finalGameList,
+  setFinalGameList,
+  setScores,
+}) {
   const [pokemonList, setPokemonList] = useState([]);
   const [initialGameList, setInitialGameList] = useState([]);
-  const [clickCount, setClickCount] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
   const [clickedList, setClickedList] = useState([]);
 
   // Game will start with 3 cards (max of 10 Pokemon) then will do medium (4/15) and hard (5/20) difficulties
@@ -75,15 +79,18 @@ export default function FetchPokemon({ finalGameList, setFinalGameList }) {
 
   function handleCards(e) {
     const pokeName = e.target.id;
-    setClickCount(true);
 
     if (clickedList.includes(pokeName)) {
       alert("YOU LOSE!");
+      setClickCount(0);
     } else {
+      setClickCount((prevCount) => prevCount + 1);
+      setScores(clickCount);
       setClickedList((prevClickedList) => [...prevClickedList, pokeName]);
     }
 
     console.log(clickedList);
+    console.log(clickCount);
     shuffleArray(finalGameList);
   }
 
