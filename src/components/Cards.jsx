@@ -9,8 +9,8 @@ export default function Cards({
   clickedList,
   displayedPokemon,
   setDisplayedPokemon,
-  setIsGameOver,
-  setIsGameWon,
+  setGameState,
+  gameState,
 }) {
   useEffect(() => {
     if (finalGameList.length > 0) {
@@ -18,8 +18,17 @@ export default function Cards({
       const unclickedPokemon = finalGameList.filter(
         (pokemon) => !clickedList.includes(pokemon.name)
       );
+      let deckNum;
 
-      const numOfVisible = 3; // Need to make this based on the difficulty.
+      if (gameState === 2) {
+        deckNum = 3;
+      } else if (gameState === 3) {
+        deckNum = 4;
+      } else if (gameState === 4) {
+        deckNum = 5;
+      }
+
+      const numOfVisible = deckNum; // Need to make this based on the difficulty.
       const visiblePokemon = new Set();
 
       if (unclickedPokemon.length > 0) {
@@ -58,7 +67,7 @@ export default function Cards({
     const pokeName = e.target.id;
 
     if (scores.curr === finalGameList.length - 1) {
-      setIsGameWon(true);
+      setGameState(0);
     }
 
     if (clickedList.includes(pokeName)) {
@@ -66,7 +75,7 @@ export default function Cards({
         ...prevScore,
         curr: 0,
       }));
-      setIsGameOver(true);
+      setGameState(1);
     } else {
       setScores((prevScore) => {
         const newCurr = prevScore.curr + 1;

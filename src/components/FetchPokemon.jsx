@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
-export default function FetchPokemon({ setFinalGameList, restartGame }) {
+export default function FetchPokemon({
+  setFinalGameList,
+  restartGame,
+  gameState,
+}) {
   const [pokemonList, setPokemonList] = useState([]);
 
   // Game will start with 3 cards (max of 10 Pokemon) then will do medium (4/15) and hard (5/20) difficulties
@@ -22,10 +26,20 @@ export default function FetchPokemon({ setFinalGameList, restartGame }) {
   function randomizePokemon() {
     //Chooses 10 random pokemon to add to initialGameList
     const pokeArr = []; // New array of just 10 pokemon
+    let deckNum;
+
+    if (gameState === 2) {
+      deckNum = 10;
+    } else if (gameState === 3) {
+      deckNum = 15;
+    } else if (gameState === 4) {
+      deckNum = 20;
+    }
+
     if (pokemonList.length < 2) {
       throw new Error("Not enough Pokemon.");
     }
-    while (pokeArr.length < 10) {
+    while (pokeArr.length < deckNum) {
       const randomPokeIndex = Math.floor(Math.random() * pokemonList.length); // Generates a random index based on the length of the pokemonList
       const randomPokemon = pokemonList[randomPokeIndex];
 
