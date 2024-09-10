@@ -1,0 +1,31 @@
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 4rem;
+}
+
+.score {
+  font-size: 2rem;
+}
+
+.header {
+  font-size: 1.2rem;
+}
+
+.button {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+.rules-btn {
+  background: linear-gradient(#e5c991, #dea92e);
+  padding: 1rem;
+  border: 3px solid #8185175d;
+  font-family: "Gameboy";
+  border-radius: 10px;
+}
+
+.rules-btn:hover {
+  background: linear-gradient(#dea92e, #e5c991);
+}

@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Scoreboard from "./components/Scoreboard";
 import LoseModal from "./components/LoseModal";
 import WinModal from "./components/WinModal";
+import RulesModal from "./components/RulesModal";
 
 function App() {
   const [finalGameList, setFinalGameList] = useState([]);
@@ -13,7 +14,7 @@ function App() {
   const [clickedList, setClickedList] = useState([]);
   const [displayedPokemon, setDisplayedPokemon] = useState([]);
   const [restartGame, setRestartGame] = useState(false);
-  const [gameState, setGameState] = useState(2);
+  const [gameState, setGameState] = useState(3);
 
   function handleRestart() {
     setRestartGame((prev) => !prev);
@@ -25,7 +26,7 @@ function App() {
   return (
     <>
       <div className="main-content">
-        <Header />
+        <Header setGameState={setGameState} />
         <Scoreboard scores={scores} finalGameList={finalGameList} />
         <FetchPokemon
           setFinalGameList={setFinalGameList}
@@ -33,20 +34,25 @@ function App() {
           gameState={gameState}
           restartGame={restartGame}
         />
-        <Cards
-          finalGameList={finalGameList}
-          scores={scores}
-          setScores={setScores}
-          clickedList={clickedList}
-          setClickedList={setClickedList}
-          displayedPokemon={displayedPokemon}
-          setDisplayedPokemon={setDisplayedPokemon}
-          setGameState={setGameState}
-          gameState={gameState}
-        />
+        {gameState === 6 ? (
+          <StartScreen />
+        ) : (
+          <Cards
+            finalGameList={finalGameList}
+            scores={scores}
+            setScores={setScores}
+            clickedList={clickedList}
+            setClickedList={setClickedList}
+            displayedPokemon={displayedPokemon}
+            setDisplayedPokemon={setDisplayedPokemon}
+            setGameState={setGameState}
+            gameState={gameState}
+          />
+        )}
       </div>
       {gameState === 1 && <LoseModal handleRestart={handleRestart} />}
       {gameState === 0 && <WinModal handleRestart={handleRestart} />}
+      {gameState === 5 && <RulesModal handleRestart={handleRestart} />}
     </>
   );
 }
@@ -60,3 +66,4 @@ export default App;
 // 3 is Med mode
 // 4 is Hard mode
 // 5 is Rules
+// 6 is Start Screen

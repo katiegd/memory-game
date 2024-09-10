@@ -1,9 +1,4 @@
-export default function Scoreboard({ scores, finalGameList, setIsGameWon }) {
-  function gameIsWon() {
-    if (scores.curr === finalGameList.length) {
-      setIsGameWon(true);
-    }
-  }
+export default function Scoreboard({ scores, finalGameList }) {
   return (
     <>
       <div className="scoreboard">

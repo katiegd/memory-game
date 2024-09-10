@@ -3,6 +3,20 @@
   src: url(./assets/GameBoy.ttf);
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap");
+
+.nanum-gothic-coding-regular {
+  font-family: "Nanum Gothic Coding", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nanum-gothic-coding-bold {
+  font-family: "Nanum Gothic Coding", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
   background-image: url(./assets/8614.jpg);
   background-repeat: no-repeat;
@@ -30,19 +44,4 @@ body {
   width: 70vw;
   height: auto;
   padding: 3vh 0vw;
-}
-
-.scoreboard {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  margin-bottom: 4rem;
-}
-
-.score {
-  font-size: 2rem;
-}
-
-.header {
-  font-size: 1.2rem;
 }

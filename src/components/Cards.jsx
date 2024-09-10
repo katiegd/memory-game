@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "../Cards.css";
 
 export default function Cards({
@@ -28,7 +28,7 @@ export default function Cards({
         deckNum = 5;
       }
 
-      const numOfVisible = deckNum; // Need to make this based on the difficulty.
+      const numOfVisible = deckNum;
       const visiblePokemon = new Set();
 
       if (unclickedPokemon.length > 0) {

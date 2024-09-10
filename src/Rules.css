@@ -1,4 +1,18 @@
-.win-modal {
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap");
+
+.nanum-gothic-coding-regular {
+  font-family: "Nanum Gothic Coding", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nanum-gothic-coding-bold {
+  font-family: "Nanum Gothic Coding", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.rules-modal {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -11,28 +25,28 @@
 }
 
 /* Modal Content/Box */
-.win-modal-content {
+.rules-modal-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   font-family: "Nanum Gothic Coding", monospace;
   font-size: 1.3rem;
   letter-spacing: 0px;
+  flex-direction: column;
+  align-items: center;
   background-color: #fffadb;
-  margin: 20% auto;
-  padding: 20px 0 50px 0;
+  margin: 10% auto;
+  padding: 1% 2%;
   border: 1px solid #888;
   border-radius: 20px;
   min-width: 400px;
-  width: 60%;
+  width: 50%;
 }
 
 /* The Close Button */
 .close {
   color: #6a6a6a;
   position: relative;
-  top: -19px;
-  left: 47%;
+  top: -8px;
+  left: 51%;
   font-size: 32px;
   font-weight: bold;
 }
@@ -44,7 +58,7 @@
   cursor: pointer;
 }
 
-.win-modal-header {
+.lose-modal-header {
   font-size: 2rem;
 }
 
@@ -53,18 +67,10 @@ button {
     1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
-.win-try-again {
-  background: linear-gradient(#91e5bb, #2ede45);
+.rules-close {
+  background: linear-gradient(#e591b0, #de2e69);
   padding: 1rem;
-  border: 3px solid #1785265d;
-  font-family: "Gameboy";
-  border-radius: 10px;
-}
-
-.win-change-difficulty {
-  background: linear-gradient(#ff9898, #ff4141);
-  padding: 1rem;
-  border: 3px solid #7316163b;
+  border: 3px solid #85175d5d;
   font-family: "Gameboy";
   border-radius: 10px;
 }
@@ -74,12 +80,8 @@ button {
   gap: 20px;
 }
 
-.win-try-again:hover {
-  background: linear-gradient(#64e675, #91e5bb);
-}
-
-.win-change-difficulty:hover {
-  background: linear-gradient(#ff4141, #ff9898);
+.rules-close:hover {
+  background: linear-gradient(#de2e69, #e591b0);
 }
 
 button:hover {
