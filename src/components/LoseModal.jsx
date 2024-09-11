@@ -1,12 +1,17 @@
 import "../LoseModal.css";
 import snorlax from "../assets/avatar.png";
 
-export default function LoseModal({ handleRestart }) {
+export default function LoseModal({ handleRestart, setShowLoseModal }) {
+  function closeLoseModal() {
+    setShowLoseModal(false);
+    handleRestart();
+  }
+
   return (
     <>
       <div className="lose-modal">
         <div className="lose-modal-content">
-          <span className="close" onClick={handleRestart}>
+          <span className="close" onClick={() => closeLoseModal()}>
             &times;
           </span>
           <p className="lose-modal-header">
@@ -16,14 +21,8 @@ export default function LoseModal({ handleRestart }) {
           </p>
           <p>You clicked on the same Pokemon twice.</p>
           <div className="button-wrapper">
-            <button className="lose-try-again" onClick={handleRestart}>
+            <button className="lose-try-again" onClick={() => closeLoseModal()}>
               Try Again?
-            </button>
-            <button
-              className="lose-change-difficulty"
-              onClick={() => changeDifficulty()}
-            >
-              Change Difficulty
             </button>
           </div>
         </div>

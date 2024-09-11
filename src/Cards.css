@@ -1,7 +1,6 @@
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   gap: 25px;
   justify-content: center;
   justify-items: center;
@@ -20,7 +19,23 @@
   transition: scale 150ms ease-out;
 }
 
+.poke-card img {
+  width: 180px;
+  height: 180px;
+}
+
 .poke-card:hover {
   cursor: pointer;
   scale: 1.1;
+}
+
+@media (max-width: 1100px) {
+  .poke-card img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .cards-container {
+    gap: 10px;
+  }
 }

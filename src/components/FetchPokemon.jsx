@@ -7,8 +7,6 @@ export default function FetchPokemon({
 }) {
   const [pokemonList, setPokemonList] = useState([]);
 
-  // Game will start with 3 cards (max of 10 Pokemon) then will do medium (4/15) and hard (5/20) difficulties
-
   useEffect(() => {
     // Pulls the names of the first 251 Pokemon
     fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=251")
@@ -28,12 +26,14 @@ export default function FetchPokemon({
     const pokeArr = []; // New array of just 10 pokemon
     let deckNum;
 
-    if (gameState === 2) {
+    if (gameState === 1) {
       deckNum = 10;
-    } else if (gameState === 3) {
+    } else if (gameState === 2) {
       deckNum = 15;
-    } else if (gameState === 4) {
+    } else if (gameState === 3) {
       deckNum = 20;
+    } else if (gameState === 4) {
+      deckNum = 251;
     }
 
     if (pokemonList.length < 2) {
@@ -63,11 +63,10 @@ export default function FetchPokemon({
       );
 
       Promise.all(fetchPromises).then((data) => {
-        console.log(data);
         setFinalGameList(data);
       });
     }
-  }, [pokemonList]); // Effect depends on pokemonList loading
+  }, [pokemonList, gameState]); // Effect depends on pokemonList loading
 
   return <></>;
 }

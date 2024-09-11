@@ -14,45 +14,62 @@ function App() {
   const [clickedList, setClickedList] = useState([]);
   const [displayedPokemon, setDisplayedPokemon] = useState([]);
   const [restartGame, setRestartGame] = useState(false);
-  const [gameState, setGameState] = useState(3);
+  const [gameState, setGameState] = useState(1);
+  const [showWinModal, setShowWinModal] = useState(false);
+  const [showLoseModal, setShowLoseModal] = useState(false);
+  const [showRulesModal, setShowRulesModal] = useState(false);
 
   function handleRestart() {
     setRestartGame((prev) => !prev);
     setClickedList([]);
-    setScores({ curr: 0, high: 0 });
-    setGameState(2);
+    setScores({ curr: 0, high: scores.high });
   }
 
   return (
     <>
       <div className="main-content">
-        <Header setGameState={setGameState} />
-        <Scoreboard scores={scores} finalGameList={finalGameList} />
+        <Header
+          setGameState={setGameState}
+          setShowRulesModal={setShowRulesModal}
+          handleRestart={handleRestart}
+          scores={scores}
+          finalGameList={finalGameList}
+        />
         <FetchPokemon
           setFinalGameList={setFinalGameList}
           setGameState={setGameState}
           gameState={gameState}
           restartGame={restartGame}
         />
-        {gameState === 6 ? (
-          <StartScreen />
-        ) : (
-          <Cards
-            finalGameList={finalGameList}
-            scores={scores}
-            setScores={setScores}
-            clickedList={clickedList}
-            setClickedList={setClickedList}
-            displayedPokemon={displayedPokemon}
-            setDisplayedPokemon={setDisplayedPokemon}
-            setGameState={setGameState}
-            gameState={gameState}
-          />
-        )}
+        <Cards
+          finalGameList={finalGameList}
+          scores={scores}
+          setScores={setScores}
+          clickedList={clickedList}
+          setClickedList={setClickedList}
+          displayedPokemon={displayedPokemon}
+          setDisplayedPokemon={setDisplayedPokemon}
+          setGameState={setGameState}
+          gameState={gameState}
+          setShowLoseModal={setShowLoseModal}
+          setShowWinModal={setShowWinModal}
+        />
       </div>
-      {gameState === 1 && <LoseModal handleRestart={handleRestart} />}
-      {gameState === 0 && <WinModal handleRestart={handleRestart} />}
-      {gameState === 5 && <RulesModal handleRestart={handleRestart} />}
+      {showLoseModal && (
+        <LoseModal
+          handleRestart={handleRestart}
+          setShowLoseModal={setShowLoseModal}
+        />
+      )}
+      {showWinModal && (
+        <WinModal
+          handleRestart={handleRestart}
+          setShowWinModal={setShowWinModal}
+          setGameState={setGameState}
+          gameState={gameState}
+        />
+      )}
+      {showRulesModal && <RulesModal setShowRulesModal={setShowRulesModal} />}
     </>
   );
 }
@@ -60,10 +77,6 @@ function App() {
 export default App;
 
 // States:
-// 0 is Win?
-// 1 is Lose?
-// 2 is Easy/default mode
-// 3 is Med mode
-// 4 is Hard mode
-// 5 is Rules
-// 6 is Start Screen
+// 1 is Easy/default mode
+// 2 is Med mode
+// 3 is Hard mode

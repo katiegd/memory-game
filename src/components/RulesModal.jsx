@@ -1,20 +1,20 @@
 import "../Rules.css";
 import rulesPic from "../assets/game.png";
 
-export default function RulesModal({ handleRestart }) {
+export default function RulesModal({ setShowRulesModal }) {
   return (
     <>
       <div className="rules-modal">
         <div className="rules-modal-content">
-          <span className="close" onClick={() => handleRestart()}>
+          <span className="close" onClick={() => setShowRulesModal(false)}>
             &times;
           </span>
           <p className="rules-modal-header">
             <img src={rulesPic} width="150px" />
             <br />
-            <h2>Rules:</h2>
+            Rules:
           </p>
-          <p>
+          <p className="rules-modal-rules">
             Your goal is to click on all the Pokémon in the game{" "}
             <b>without clicking the same Pokémon twice.</b>
             <br /> The number of Pokémon you need to click depends on the
@@ -26,12 +26,16 @@ export default function RulesModal({ handleRestart }) {
             <br />
             Hard: 20 Pokémon
             <br />
+            Insane: 251 Pokémon <br />
             <br />
             If you beat one level, the next level will automatically unlock!
           </p>
           <br />
           <div className="button-wrapper">
-            <button className="rules-close" onClick={() => handleRestart()}>
+            <button
+              className="rules-close"
+              onClick={() => setShowRulesModal(false)}
+            >
               Close
             </button>
           </div>

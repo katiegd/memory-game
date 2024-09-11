@@ -9,8 +9,9 @@ export default function Cards({
   clickedList,
   displayedPokemon,
   setDisplayedPokemon,
-  setGameState,
   gameState,
+  setShowLoseModal,
+  setShowWinModal,
 }) {
   useEffect(() => {
     if (finalGameList.length > 0) {
@@ -20,12 +21,14 @@ export default function Cards({
       );
       let deckNum;
 
-      if (gameState === 2) {
+      if (gameState === 1) {
         deckNum = 3;
-      } else if (gameState === 3) {
+      } else if (gameState === 2) {
         deckNum = 4;
+      } else if (gameState === 3) {
+        deckNum = 6;
       } else if (gameState === 4) {
-        deckNum = 5;
+        deckNum = 8;
       }
 
       const numOfVisible = deckNum;
@@ -46,7 +49,7 @@ export default function Cards({
       }
       setDisplayedPokemon([...visiblePokemon]);
     }
-  }, [finalGameList, clickedList]);
+  }, [finalGameList, clickedList, gameState]);
 
   function shuffleArray(array) {
     //Fisher-Yates Sorting Algorithm
@@ -67,7 +70,7 @@ export default function Cards({
     const pokeName = e.target.id;
 
     if (scores.curr === finalGameList.length - 1) {
-      setGameState(0);
+      setShowWinModal(true);
     }
 
     if (clickedList.includes(pokeName)) {
@@ -75,7 +78,7 @@ export default function Cards({
         ...prevScore,
         curr: 0,
       }));
-      setGameState(1);
+      setShowLoseModal(true);
     } else {
       setScores((prevScore) => {
         const newCurr = prevScore.curr + 1;
@@ -106,8 +109,6 @@ export default function Cards({
                 id={pokemon.name}
                 key={pokemon.id}
                 src={pokemon.sprites.front_default}
-                width="200px"
-                height="200px"
               />
             </div>
           ))
@@ -115,3 +116,8 @@ export default function Cards({
     </div>
   );
 }
+
+// States:
+// 1 is Easy/default mode
+// 2 is Med mode
+// 3 is Hard mode

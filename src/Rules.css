@@ -24,11 +24,16 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.rules-modal-header {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
 /* Modal Content/Box */
 .rules-modal-content {
   display: flex;
   font-family: "Nanum Gothic Coding", monospace;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   letter-spacing: 0px;
   flex-direction: column;
   align-items: center;
@@ -73,6 +78,10 @@ button {
   border: 3px solid #85175d5d;
   font-family: "Gameboy";
   border-radius: 10px;
+}
+
+.rules-modal-rules {
+  padding: 0px 40px;
 }
 
 .button-wrapper {

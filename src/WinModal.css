@@ -32,7 +32,7 @@
   color: #6a6a6a;
   position: relative;
   top: -19px;
-  left: 47%;
+  left: 45%;
   font-size: 32px;
   font-weight: bold;
 }
@@ -46,6 +46,7 @@
 
 .win-modal-header {
   font-size: 2rem;
+  font-weight: 800;
 }
 
 button {
@@ -54,17 +55,17 @@ button {
 }
 
 .win-try-again {
-  background: linear-gradient(#91e5bb, #2ede45);
+  background: linear-gradient(#91a7e5, #2e45de);
   padding: 1rem;
-  border: 3px solid #1785265d;
+  border: 3px solid #2d17855d;
   font-family: "Gameboy";
   border-radius: 10px;
 }
 
-.win-change-difficulty {
-  background: linear-gradient(#ff9898, #ff4141);
+.win-next-level {
+  background: linear-gradient(#91e5bb, #2ede45);
   padding: 1rem;
-  border: 3px solid #7316163b;
+  border: 3px solid #1785265d;
   font-family: "Gameboy";
   border-radius: 10px;
 }
@@ -75,11 +76,11 @@ button {
 }
 
 .win-try-again:hover {
-  background: linear-gradient(#64e675, #91e5bb);
+  background: linear-gradient(#2e45de, #91a7e5);
 }
 
-.win-change-difficulty:hover {
-  background: linear-gradient(#ff4141, #ff9898);
+.win-next-level:hover {
+  background: linear-gradient(#2ede45, #91e5bb);
 }
 
 button:hover {
