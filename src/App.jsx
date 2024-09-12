@@ -3,10 +3,10 @@ import "./App.css";
 import Cards from "./components/Cards";
 import FetchPokemon from "./components/FetchPokemon";
 import Header from "./components/Header";
-import Scoreboard from "./components/Scoreboard";
 import LoseModal from "./components/LoseModal";
 import WinModal from "./components/WinModal";
 import RulesModal from "./components/RulesModal";
+import Credits from "./components/Credits";
 
 function App() {
   const [finalGameList, setFinalGameList] = useState([]);
@@ -18,11 +18,16 @@ function App() {
   const [showWinModal, setShowWinModal] = useState(false);
   const [showLoseModal, setShowLoseModal] = useState(false);
   const [showRulesModal, setShowRulesModal] = useState(false);
+  const [showCredits, setShowCredits] = useState(false);
 
   function handleRestart() {
     setRestartGame((prev) => !prev);
     setClickedList([]);
     setScores({ curr: 0, high: scores.high });
+  }
+
+  function showCreditsModal() {
+    setShowCredits(true);
   }
 
   return (
@@ -70,6 +75,10 @@ function App() {
         />
       )}
       {showRulesModal && <RulesModal setShowRulesModal={setShowRulesModal} />}
+      {showCredits && <Credits setShowCredits={setShowCredits} />}
+      <button className="credits-btn" onClick={showCreditsModal}>
+        Credits
+      </button>
     </>
   );
 }

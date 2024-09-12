@@ -1,9 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap");
+
 @font-face {
   font-family: "Gameboy";
   src: url(./assets/GameBoy.ttf);
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap");
 
 .nanum-gothic-coding-regular {
   font-family: "Nanum Gothic Coding", monospace;
@@ -18,17 +18,16 @@
 }
 
 body {
-  background-image: url(./assets/8614.jpg);
+  background-image: url(./assets/oexlfzwy78ex.png);
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position: center bottom;
   height: 100%;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 320px;
-  min-height: 100vh;
   font-family: "Gameboy", "Courier New", Courier, monospace;
   font-size: 12px;
   letter-spacing: -1px;
@@ -48,7 +47,25 @@ body {
   min-width: 600px;
   width: 70vw;
   height: auto;
+  margin: 2rem 0;
   padding: 3vh 0vw;
+}
+
+.credits-btn {
+  opacity: 60%;
+  font-size: 0.7rem;
+  margin-top: 2rem;
+  height: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+}
+
+.credits-btn:hover {
+  text-decoration: underline;
+  box-shadow: none;
 }
 
 @media (max-width: 1100px) {
@@ -71,7 +88,6 @@ body {
     background-color: #8cc9e8f0;
     box-shadow: 1px 1px 15px #00000033;
     backdrop-filter: blur(4px);
-    width: 100vw;
     min-width: 300px;
     height: auto;
     padding: 3vh 3vw;

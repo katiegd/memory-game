@@ -11,9 +11,6 @@ export default function LoseModal({ handleRestart, setShowLoseModal }) {
     <>
       <div className="lose-modal">
         <div className="lose-modal-content">
-          <span className="close" onClick={() => closeLoseModal()}>
-            &times;
-          </span>
           <p className="lose-modal-header">
             <img src={snorlax} width="150px" />
             <br></br>

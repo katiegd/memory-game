@@ -6,9 +6,6 @@ export default function RulesModal({ setShowRulesModal }) {
     <>
       <div className="rules-modal">
         <div className="rules-modal-content">
-          <span className="close" onClick={() => setShowRulesModal(false)}>
-            &times;
-          </span>
           <p className="rules-modal-header">
             <img src={rulesPic} width="150px" />
             <br />

@@ -23,9 +23,6 @@ export default function WinModal({
     <>
       <div className="win-modal">
         <div className="win-modal-content">
-          <span className="close" onClick={() => closeWinModal()}>
-            &times;
-          </span>
           <p className="win-modal-header">
             <img src={happyPikachu} width="150px" />
             <br></br>

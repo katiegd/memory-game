@@ -19,6 +19,7 @@ export default function Cards({
       const unclickedPokemon = finalGameList.filter(
         (pokemon) => !clickedList.includes(pokemon.name)
       );
+
       let deckNum;
 
       if (gameState === 1) {
@@ -32,6 +33,7 @@ export default function Cards({
       }
 
       const numOfVisible = deckNum;
+
       const visiblePokemon = new Set();
 
       if (unclickedPokemon.length > 0) {
@@ -47,7 +49,9 @@ export default function Cards({
           finalGameList[Math.floor(Math.random() * finalGameList.length)];
         visiblePokemon.add(randomPokemon);
       }
-      setDisplayedPokemon([...visiblePokemon]);
+      const shuffledVisiblePokemon = [...visiblePokemon]; // Shuffles displayed pokemon so new pokemon card isn't always in position 0.
+      shuffleArray(shuffledVisiblePokemon);
+      setDisplayedPokemon(shuffledVisiblePokemon);
     }
   }, [finalGameList, clickedList, gameState]);
 
@@ -68,11 +72,9 @@ export default function Cards({
 
   function handleCards(e) {
     const pokeName = e.target.id;
-
     if (scores.curr === finalGameList.length - 1) {
       setShowWinModal(true);
     }
-
     if (clickedList.includes(pokeName)) {
       setScores((prevScore) => ({
         ...prevScore,
