@@ -52,6 +52,7 @@ body {
 }
 
 .credits-btn {
+  color: #000;
   opacity: 60%;
   font-size: 0.7rem;
   margin-top: 2rem;
